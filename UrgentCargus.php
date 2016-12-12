@@ -6,14 +6,13 @@ use GuzzleHttp\Client;
 class UrgentCargus {
 	
 	CONST API_URL = 'https://urgentcargus.azure-api.net/api/';
-	CONST API_SUBSCRIPTION_KEY = '';
 
 	private $client = null;
 	private $response = null;
 	private $token = null;
 	private $headers = [];
 
-	public function __construct()
+	public function __construct($api_subscription_key)
 	{
 		$this->client = new Client([
 		    'base_uri' => self::API_URL,
@@ -21,7 +20,7 @@ class UrgentCargus {
 		    'connect_timeout' => 3.0
 		]);
 
-		$this->_getHeaders();
+		$this->_getHeaders($api_subscription_key);
 	}
 
 	public function login($user, $pass)
@@ -50,9 +49,9 @@ class UrgentCargus {
 		
 	}
 
-	private function _getHeaders()
+	private function _getHeaders($api_subscription_key)
 	{
-		$this->headers['Ocp-Apim-Subscription-Key'] = self::API_SUBSCRIPTION_KEY;
+		$this->headers['Ocp-Apim-Subscription-Key'] = $api_subscription_key;
 		$this->headers['Ocp-Apim-Trace'] = true;
 	}
 }
