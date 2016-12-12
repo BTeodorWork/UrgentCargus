@@ -1,0 +1,15 @@
+{
+    "name": "bteodorwork/urgentcargus",
+    "description": "UrgentCargus API Class",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.2"
+    },
+    "authors": [
+        {
+            "name": "Teodor B.",
+            "email": "teodor.btc.work@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
