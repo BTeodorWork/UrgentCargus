@@ -1,5 +1,5 @@
 <?php 
-namespace BTeodorWork\UrgentCargus;
+namespace BTeodorWork;
 
 use GuzzleHttp\Client;
 
@@ -40,13 +40,25 @@ class UrgentCargus {
 
 		try {
 			$this->response = $this->client->request($requestType, $method, ['json' => $params, 'headers' => $this->headers]);
-
-			var_dump($this->response->getBody()->getContents());
 		}
 		catch(Exception $e) {
 			var_dump($e->getMessage());
 		}
 		
+	}
+
+	public function getResponse()
+	{
+		return $this->response;
+	}
+
+	public function getResponseBody($json = true)
+	{
+		if($json):
+			return json_decode($this->response->getBody());
+		else:
+			return $this->response->getBody()->getContents();
+		endif;
 	}
 
 	private function _getHeaders($api_subscription_key)
