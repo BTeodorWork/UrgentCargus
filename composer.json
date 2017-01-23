@@ -4,7 +4,7 @@
     "type": "library",
     "license": "GPL",
     "require": {
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^5.x"
     },
     "autoload": {
         "psr-4": {
