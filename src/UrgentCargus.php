@@ -39,7 +39,8 @@ class UrgentCargus {
 	{
 
 		try {
-			$this->response = $this->client->request($requestType, $method, ['json' => $params, 'headers' => $this->headers]);
+			$request = $this->client->createRequest($requestType, $method, ['json' => $params, 'headers' => $this->headers]);
+			$this->response = $request->send();
 		}
 		catch(Exception $e) {
 			var_dump($e->getMessage());
