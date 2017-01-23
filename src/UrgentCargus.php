@@ -15,7 +15,7 @@ class UrgentCargus {
 	public function __construct($api_subscription_key)
 	{
 		$this->client = new Client([
-		    'base_uri' => self::API_URL,
+		    'base_url' => self::API_URL,
 		    'timeout'  => 2.0,
 		    'connect_timeout' => 3.0
 		]);
@@ -25,7 +25,7 @@ class UrgentCargus {
 
 	public function login($user, $pass)
 	{
-		$this->callMethod('LoginUser', 'POST', ['UserName' => $user, 'Password' => $pass]);
+		$this->callMethod('LoginUser', 'POST', array('UserName' => $user, 'Password' => $pass));
 
 		if($this->response):
 			$this->token = json_decode($this->response->getBody());
@@ -39,11 +39,11 @@ class UrgentCargus {
 	{
 
 		try {
-			$request = $this->client->createRequest($requestType, $method, ['json' => $params, 'headers' => $this->headers]);
-			$this->response = $request->send();
+			$request = $this->client->createRequest($requestType, $method, array('json' => $params, 'headers' => $this->headers));
+			$this->response = $this->client->send($request);
 		}
 		catch(Exception $e) {
-			var_dump($e->getMessage());
+			// var_dump($e->getMessage());
 		}
 		
 	}
